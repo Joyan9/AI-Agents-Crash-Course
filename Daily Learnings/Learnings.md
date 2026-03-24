@@ -37,4 +37,6 @@ There were 3 methods shown for chunking
 
 So how should we decided which method to use, or perhaps a combination?
 - As such there is not set rule, but as a rule of thumb start with the low-effort approach and if that provides good enough results then we don't need to add any more complexity
-- Move towards the complex methods only if the performance justifies the effort.   
+- Move towards the complex methods only if the performance justifies the effort.
+
+As part of my homework we were supposed to try out each of the chunking methods on our own project and evaluate (roughly) which method works best for me. In my case it seems like the splitting by sections and paragraph works the best. The simple sliding window chunks leads to breaking of context - especially important for study notes.
