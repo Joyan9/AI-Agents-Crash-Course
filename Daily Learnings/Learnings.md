@@ -46,7 +46,7 @@ As part of my homework we were supposed to try out each of the chunking methods 
 
 Today we implemented the search the functionality. I have a new-found respect for the search function that we use almost on very tool - the engineering marvel behind the scenes is just too good.
 
-So  types of search methods were covered, essentially they are just 2 - the third one is a combination of both.
+So 3 types of search methods were covered - essentially they are just 2 -> the third one is a combination of both.
 
 1. Text Search
     - Simple to implement, fast, efficient and works well in most cases
@@ -67,5 +67,7 @@ The example below shows the strenghts and weaknesses of each method
 | **"Tool for making holes"** | Finds "Acme Drill 500" | Finds nothing (no match for "holes") |
 
 3. Hybrid Search
-Combining both approaches gives us the best of both worlds. This is known as "hybrid search."
+Combining both approaches gives us the best of both worlds. This is known as "hybrid search".
+
+For my personal project, where I'm building an AI agent on top of my data engineering / analytics engineering notes - both the text and vector search seem to perform decently. I'm curious how further down the course we would learn how to evaluate which search method works best for us.
 
