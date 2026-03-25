@@ -40,3 +40,32 @@ So how should we decided which method to use, or perhaps a combination?
 - Move towards the complex methods only if the performance justifies the effort.
 
 As part of my homework we were supposed to try out each of the chunking methods on our own project and evaluate (roughly) which method works best for me. In my case it seems like the splitting by sections and paragraph works the best. The simple sliding window chunks leads to breaking of context - especially important for study notes.
+
+
+# Day 3 Learnings
+
+Today we implemented the search the functionality. I have a new-found respect for the search function that we use almost on very tool - the engineering marvel behind the scenes is just too good.
+
+So  types of search methods were covered, essentially they are just 2 - the third one is a combination of both.
+
+1. Text Search
+    - Simple to implement, fast, efficient and works well in most cases
+    - Great to look up exact keyword matches, like when searching for a product by product ID
+    - Fails for paraphrased queries
+    - Does not consider the meaning or the intent of the query
+
+2. Vector Search
+    - This is something I have heard about but did not have any clue of it's working
+    - The core idea of vector search is that the query is converted into a vector (aka embeddings) and matched with the content vectors - it finds semantically similar answers
+    - For instance, if I search for canines - I'll get results of dogs, but with text search I wouldn't have any results returned unless the word 'canine' was part of the information.
+    - However vector search fails where text search shines - exact match. Since vector search prioritizes summarsing the query, it does not perform well for exact searches.
+
+The example below shows the strenghts and weaknesses of each method
+| Query | Vector Search Result | Keyword Search Result |
+| :--- | :--- | :--- |
+| **"Acme Drill 500"** | Finds "Heavy-duty power tools" | Finds "Acme Drill 500" |
+| **"Tool for making holes"** | Finds "Acme Drill 500" | Finds nothing (no match for "holes") |
+
+3. Hybrid Search
+Combining both approaches gives us the best of both worlds. This is known as "hybrid search."
+
