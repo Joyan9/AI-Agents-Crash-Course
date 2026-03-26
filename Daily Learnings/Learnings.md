@@ -71,3 +71,47 @@ Combining both approaches gives us the best of both worlds. This is known as "hy
 
 For my personal project, where I'm building an AI agent on top of my data engineering / analytics engineering notes - both the text and vector search seem to perform decently. I'm curious how further down the course we would learn how to evaluate which search method works best for us.
 
+# Day 4 Learnings
+Today we actually built an AI agent - what's an agent?
+An agent is a LLM that not only generates text but can also use tools - tools like searching the database for data, or running a Python script.
+So LLM + Tool Access = Agent
+
+Groq's documentation lists out the flow of how tools work with a LLMs
+
+```
+Your App → Makes request to Groq API with tool definitions   
+   ↓ 
+Groq API → Makes request to LLM model with user-provided tool definitions
+         ← Model returns tool_calls (or, if no tool calls are needed, 
+           returns final response)
+   ↓
+Your App → Parses tool call arguments
+         → Executes function locally with provided arguments
+         ← Function returns results
+         → Makes request to Groq API with tool results 
+   ↓
+Groq API → Makes another request to LLM with tool results
+         ← Model returns more tool_calls (returns to step 3), or 
+           returns final response
+   ↓
+Your App
+```
+
+**Major components of tool use**
+
+1. Tool Schema
+    - You need to define what your tool does, give it a name, what parameters can it accept and so on
+    - This is similar to the docstrings added to functions (Pydantic AI library actually uses those as the tool schema / definition)
+
+
+2. System prompt
+    - Contains the instructions for the LLM
+    - You can explicilty state here to use tool XYZ
+    - Therefore add clear instructions in your system prompts - what it needs to do, how it should do it, what to do if it fails etc
+
+Finally I also learned about Pydantic AI library (ofc there's a python library to make your work easier). With the help of this library you do not need to explicitly handle the back and forth between LLM and tool. Pydantic provides a method called 'all_messages_json' - which basically returns the LLM's thinking mechanism. The output can show you where the tools were invoked, what were the parameters, how many times was it invoked and so on.
+
+The part that was most fascinating to me was the multi-tool use from the LLM - it can not only invoke the tool once but multiple times (this depends on the system prompt) until it gets an answer or quits trying.
+
+
+Groq documentation on tooling: https://console.groq.com/docs/tool-use/local-tool-calling#how-local-tool-calling-works
