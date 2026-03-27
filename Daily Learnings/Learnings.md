@@ -115,3 +115,49 @@ The part that was most fascinating to me was the multi-tool use from the LLM - i
 
 
 Groq documentation on tooling: https://console.groq.com/docs/tool-use/local-tool-calling#how-local-tool-calling-works
+
+
+# Day 5 Learnings
+
+Today I learnt how to evaluate the output of an AI agent. Essentially there are two methods, the first one is the manual check and the second one is a more comprehensive check wherein another LLM is used to evaulate the outcome and also used for generating test data.
+
+## First Method of Evaluation - Logging + Manual Check
+
+This is also called a "vibe check" - you simply ask the agent a few questions and evaluate the outcome manually. You might spot some edge cases that could be included in the system prompt or you might notice the agent hallucinates when XYZ is asked.
+
+Manual evaluation will help you understand edge cases, learn what good responses look like and think of evaluation criteria for automated checks later.
+
+So, in our case, we can have the following checks:
+- Does the agent follow the instructions?
+- Given the question, does the answer make sense?
+- Does it include references?
+- Did the agent use the available tools?
+
+
+## Second Method of Evaluation - Use another LLM!
+
+- LLMs can be used for judging the output for another LLM
+- A key tip when using LLMs for judging -> make it give the justification before declaring the final results, this makes the LLM reason about the about before giving the final judgement.
+
+So, in our case, we can have the following checks:
+- Does the agent follow the instructions?
+- Given the question, does the answer make sense?
+- Does it include references?
+- Did the agent use the available tools?
+
+These questions can be converted into a checklist and the LLM can simply input 1/0.
+
+This is helpful because then we can quantify "The agent followed the instructions 80% of the time."
+
+
+Moreover, we also learnt today - how AI can be used for generating test scenarios
+
+## Generating Test Data
+
+We can use AI to generate questions by randomly referencing certain files and asking it to generate questions related to it. 
+
+This approach provides us a ton of test data for evaluation but we also need to be careful since the AI might not consider how real users would ask questions
+
+
+### Results from evaluation my agent
+-- to add after doing the homework
