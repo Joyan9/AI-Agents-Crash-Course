@@ -158,6 +158,3 @@ We can use AI to generate questions by randomly referencing certain files and as
 
 This approach provides us a ton of test data for evaluation but we also need to be careful since the AI might not consider how real users would ask questions
 
-
-### Results from evaluation my agent
--- to add after doing the homework
