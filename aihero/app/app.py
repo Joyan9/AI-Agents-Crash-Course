@@ -9,7 +9,7 @@ import logs
 
 # ── Page config ────────────────────────────────────────────────────────────
 st.set_page_config(
-    page_title="Learning Data Engineering Q&A - Powered by Groq",
+    page_title="Learning Data Engineering Q&A",
     page_icon="📚",
     layout="centered",
 )
@@ -33,6 +33,23 @@ st.caption("Ask anything about your data engineering study notes.")
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
+if "pending_question" not in st.session_state:
+    st.session_state.pending_question = None
+
+# Sample questions — shown only before the conversation starts
+SAMPLE_QUESTIONS = [
+    "What are data contracts and why are they important?",
+    "What is the difference between row-oriented and column-oriented databases?",
+    "How does dbt model resolution work across different environments?",
+]
+
+if not st.session_state.messages:
+    st.markdown("**Try asking:**")
+    cols = st.columns(len(SAMPLE_QUESTIONS))
+    for col, question in zip(cols, SAMPLE_QUESTIONS):
+        with col:
+            if st.button(question, use_container_width=True):
+                st.session_state.pending_question = question
 
 # Render chat history
 for msg in st.session_state.messages:
@@ -73,7 +90,11 @@ def stream_response(prompt: str):
 
 
 # ── Chat input ──────────────────────────────────────────────────────────────
-if prompt := st.chat_input("Ask your question..."):
+# Accept input from either the text box or a sample-question button click
+typed = st.chat_input("Ask your question...")
+prompt = typed or st.session_state.pop("pending_question", None)
+
+if prompt:
     # Show user message
     st.session_state.messages.append({"role": "user", "content": prompt})
     with st.chat_message("user"):
