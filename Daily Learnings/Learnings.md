@@ -158,3 +158,10 @@ We can use AI to generate questions by randomly referencing certain files and as
 
 This approach provides us a ton of test data for evaluation but we also need to be careful since the AI might not consider how real users would ask questions
 
+# Day 6 Learnings
+
+For today lesson's the main focus was on deploying the AI agent - nobody wants to interact with it in a jupyter-notebook right?
+
+So we built a modular python-streamlit based web app. Roughly it took me just 30 mins to get the app up and running. I remember when I first started out in data - without any AI tools - it used to take days to simple launch a streamlit app, but now I can do it with my phone.
+
+
