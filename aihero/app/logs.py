@@ -44,8 +44,7 @@ def log_interaction_to_file(agent, messages, source="user"):
     entry = log_entry(agent, messages, source)
 
     ts = entry["messages"][-1]["timestamp"]
-    ts_obj = datetime.fromisoformat(ts.replace("Z", "+00:00"))
-    ts_str = ts_obj.strftime("%Y%m%d_%H%M%S")
+    ts_str = ts.strftime("%Y%m%d_%H%M%S")
     rand_hex = secrets.token_hex(3)
 
     filename = f"{entry['agent_name']}_{ts_str}_{rand_hex}.json"
