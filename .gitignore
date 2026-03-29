@@ -1,6 +1,7 @@
 .env
 /aihero/course/logs/*.json
 /aihero/project/logs/*.json
-aihero/app/__pycache__/
-aihero/app/uv.lock
-aihero/app/.python-version
+/app/eval/logs/*.json
+/app/__pycache__/
+/app/uv.lock
+/app/.python-version
